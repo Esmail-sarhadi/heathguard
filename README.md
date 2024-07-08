@@ -72,7 +72,7 @@ This project is an advanced environmental and health monitoring system built wit
        }
    </script>
    ```
-![ESP32 Monitoring System](images/encryp-data.png)
+![ESP32 Monitoring System](images/encrypt-data.png)
 ### Arduino Code
 
 The Arduino code collects data from the sensors, processes it, and sends it to the server. It also handles LED indications based on the readings. 
