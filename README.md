@@ -4,7 +4,7 @@
 # Advanced Environmental and Health Monitoring System with ESP32
 
 This project is an advanced environmental and health monitoring system built with an ESP32 microcontroller. It measures various environmental parameters and human health indicators in real-time, transmitting encrypted data to a remote server via Wi-Fi.
-![ESP32 Monitoring System](images/dashboard.jpg)
+![ESP32 Monitoring System](images/dashboard.png)
 ## Features
 
 ### Health Monitoring
@@ -72,7 +72,7 @@ This project is an advanced environmental and health monitoring system built wit
        }
    </script>
    ```
-![ESP32 Monitoring System](images/encryp-data.jpg)
+![ESP32 Monitoring System](images/encryp-data.png)
 ### Arduino Code
 
 The Arduino code collects data from the sensors, processes it, and sends it to the server. It also handles LED indications based on the readings. 
