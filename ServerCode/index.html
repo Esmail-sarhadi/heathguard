@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Sensor Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            background-image: url('ax.jpg');
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .data {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        .icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+        }
+        .update {
+            transform: scale(1.1);
+            color: #FF5733 !important;
+            transition: transform 0.5s, color 0.5s;
+        }
+        .data-number { color: #007BFF; }
+        .data-datetime { color: #FF5733; }
+        .data-device { color: #28A745; }
+        .data-temperature { color: #FFC107; }
+        .data-humidity { color: #6c757d; } 
+        .data-co2 { color: #17A2B8; }
+        .data-heart-rate { color: #E83E8C; }
+        .data-oxygen { color: #6c757d; }
+        .data-pressure { color: #E83E8C; }
+        .data-air-quality { color: #007BFF; }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .icon {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+    <script>
+        function fetchData() {
+            fetch('data.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const lines = data.trim().split('\n');
+                    const lastLine = lines[lines.length - 1];
+                    const dataArray = lastLine.split(', ');
+
+                    updateElement('message_number', dataArray[0], 'data-number');
+                    updateElement('datetime', dataArray[1], 'data-datetime');
+                    updateElement('device', dataArray[2], 'data-device');
+                    updateElement('temperature', dataArray[3], 'data-temperature');
+                    updateElement('humidity', dataArray[4], 'data-humidity');
+                    updateElement('co2', dataArray[5], 'data-co2');
+                    updateElement('heart_rate', dataArray[6], 'data-heart-rate');
+                    updateElement('oxygen', dataArray[7], 'data-oxygen');
+                    updateElement('pressure', dataArray[8], 'data-pressure');
+                    updateElement('air_quality', dataArray[9], 'data-air-quality');
+
+                    const encryptedMessage = dataArray[10];
+                    updateElement('encrypted_message', encryptedMessage, 'data');
+
+                    const decryptedMessage = decrypt(encryptedMessage, 3);
+                    updateElement('decrypted_message', decryptedMessage, 'data');
+                });
+        }
+
+        function updateElement(id, newValue, className) {
+            const element = document.getElementById(id);
+            if (element.innerText !== newValue) {
+                element.innerText = newValue;
+                element.classList.add('update', className);
+                setTimeout(() => {
+                    element.classList.remove('update');
+                }, 500);
+            }
+        }
+
+        function decrypt(data, shift) {
+            let decrypted = "";
+            for (let i = 0; i < data.length; i++) {
+                decrypted += String.fromCharCode(data.charCodeAt(i) - shift);
+            }
+            return decrypted;
+        }
+
+        setInterval(fetchData, 1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <p><i class="fas fa-hashtag icon icon-number"></i>Message Number: <span id="message_number" class="data data-number"></span></p>
+        <p><i class="fas fa-clock icon icon-datetime"></i>Datetime: <span id="datetime" class="data data-datetime"></span></p>
+        <p><i class="fas fa-microchip icon icon-device"></i>Device: <span id="device" class="data data-device"></span></p>
+        <p><i class="fas fa-thermometer-half icon icon-temperature"></i>Temperature: <span id="temperature" class="data data-temperature"></span></p>
+        <p><i class="fas fa-tint icon icon-humidity"></i>Humidity: <span id="humidity" class="data data-humidity"></span></p>
+        <p><i class="fas fa-cloud icon icon-co2"></i>CO2: <span id="co2" class="data data-co2"></span></p>
+        <p><i class="fas fa-heartbeat icon icon-heart-rate"></i>Heart Rate: <span id="heart_rate" class="data data-heart-rate"></span></p>
+        <p><i class="fas fa-lungs icon icon-oxygen"></i>Oxygen: <span id="oxygen" class="data data-oxygen"></span></p>
+        <p><i class="fas fa-tachometer-alt icon icon-pressure"></i>Pressure: <span id="pressure" class="data data-pressure"></span></p>
+        <p><i class="fas fa-smog icon icon-air-quality"></i>Air Quality: <span id="air_quality" class="data data-air-quality"></span></p>
+    </div>
+</body>
+</html>
