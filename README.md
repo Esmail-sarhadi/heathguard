@@ -95,7 +95,12 @@ The Arduino code collects data from the sensors, processes it, and sends it to t
    - Place the PHP script on your web server.
    - Ensure the server can handle incoming POST requests and has write permissions for the `data.txt` and `data.csv` files.
 4. **Run the HTML Interface**:
-   - Place the HTML file on your web server.
+   - Place the HTML file on your web server.<h2 id="donation">Donation</h2>
+
+<p>If you find this project helpful, consider making a donation:</p>
+<p><a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank">
+     <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
+</a></p>
    - Open the HTML file in a web browser to view real-time data.
 
 ## Dependencies
@@ -114,4 +119,9 @@ The Arduino code collects data from the sensors, processes it, and sends it to t
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
+<h2 id="donation">Donation</h2>
 
+<p>If you find this project helpful, consider making a donation:</p>
+<p><a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank">
+     <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
+</a></p>
