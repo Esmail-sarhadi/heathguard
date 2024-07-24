@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="vqq11CWNVkLVnZvjCeZReKc8-FRmgxek2SOWjr35CbY" />
+    <link rel="shortcut icon" type="image/png" href="android-chrome-512x512.png">
+    <title>هلث‌گارد | سیستم پیشرفته نظارت بر محیط و سلامت با ESP32</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');
+         
+        :root {
+            --primary-color: #1abc9c;
+            --secondary-color: #34495e;
+            --background-color: #ecf0f1;
+            --card-background: white;
+            --text-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(45deg, var(--background-color), #d5d8dc);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            perspective: 1000px;
+        }
+        
+        h1, h2 {
+            color: var(--secondary-color);
+            text-align: center;
+            transform: translateZ(50px);
+            transition: transform 0.3s ease;
+        }
+        
+        h1:hover, h2:hover {
+            transform: translateZ(75px) scale(1.05);
+        }
+        
+        .card {
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #16a085;
+            transform: translateY(-2px);
+        }
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 5px;
+            display: inline-block;
+            animation: bounce 0.6s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes rotate3D {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        
+        .rotate3D {
+            animation: rotate3D 10s linear infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+        }
+        
+        /* حالت تاریک */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #1abc9c;
+                --secondary-color: #ecf0f1;
+                --background-color: #2c3e50;
+                --card-background: #34495e;
+                --text-color: #ecf0f1;
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="lang-switch">
+        <a href="index.html" class="btn">🇺🇸 English</a>
+    </div>
+    <div class="container">
+        <h1 class="rotate3D">هلث‌گارد <span class="emoji">🌡️</span><span class="emoji">💓</span><span class="emoji">🔬</span></h1>
+        
+        <div class="card">
+            <h2>سیستم پیشرفته نظارت بر محیط و سلامت با ESP32</h2>
+            <p>این پروژه یک سیستم پیشرفته نظارت بر محیط و سلامت است که با میکروکنترلر ESP32 ساخته شده است. این سیستم پارامترهای مختلف محیطی و شاخص‌های سلامت انسان را در زمان واقعی اندازه‌گیری کرده و داده‌های رمزگذاری شده را از طریق Wi-Fi به یک سرور از راه دور ارسال می‌کند. <span class="emoji">🚀</span></p>
+        </div>
+        
+        <img src="/api/placeholder/800/600" alt="داشبورد سیستم نظارتی ESP32" />
+        
+        <h2>ویژگی‌ها <span class="emoji">✨</span></h2>
+        <div class="card">
+            <h3>نظارت بر سلامت <span class="emoji">💓</span></h3>
+            <ul>
+                <li><strong>اندازه‌گیری ضربان قلب و SpO2</strong>: از سنسور MAX30105 برای خواندن دقیق ضربان قلب و اشباع اکسیژن خون (SpO2) استفاده می‌کند.</li>
+                <li><strong>تشخیص انگشت</strong>: به طور خودکار انگشت را روی سنسور تشخیص می‌دهد تا اندازه‌گیری را شروع کند.</li>
+            </ul>
+
+            <h3>نظارت بر محیط <span class="emoji">🌡️</span></h3>
+            <ul>
+                <li><strong>دما، رطوبت و فشار</strong>: از سنسور BME280 برای خواندن‌های محیطی استفاده می‌کند.</li>
+                <li><strong>کیفیت هوا</strong>: سطح CO2 را با سنسور MQ135 نظارت می‌کند و کیفیت هوا را به عنوان "خوب"، "متوسط"، "ضعیف" یا "بسیار ضعیف" طبقه‌بندی می‌کند.</li>
+            </ul>
+
+            <h3>نشانگرهای LED <span class="emoji">💡</span></h3>
+            <ul>
+                <li><strong>نمایش نبض</strong>: ضربان قلب با پالس‌های LED سبز به صورت بصری نشان داده می‌شود.</li>
+                <li><strong>سیستم هشدار</strong>: LED‌های قرمز هنگام تجاوز از آستانه‌های محیطی چشمک می‌زنند.</li>
+            </ul>
+
+            <h3>امنیت داده <span class="emoji">🔒</span></h3>
+            <ul>
+                <li><strong>رمزگذاری داده</strong>: از رمز سزار برای رمزگذاری داده‌ها قبل از انتقال استفاده می‌کند تا ارتباط امن تضمین شود.</li>
+                <li><strong>اتصال Wi-Fi</strong>: به Wi-Fi متصل می‌شود تا داده‌های رمزگذاری شده را برای نظارت از راه دور به سرور مشخص شده ارسال کند.</li>
+            </ul>
+
+            <h3>ارتباط با سرور <span class="emoji">🌐</span></h3>
+            <ul>
+                <li><strong>درخواست‌های HTTP POST</strong>: داده‌های سنسور رمزگذاری شده را برای نظارت در زمان واقعی به سرور ارسال می‌کند.</li>
+                <li><strong>پردازش پاسخ</strong>: پاسخ‌ها را از سرور دریافت و رمزگشایی می‌کند تا یکپارچگی داده‌ها و ارتباط صحیح را تضمین کند.</li>
+            </ul>
+        </div>
+        
+        <h2>راه‌اندازی و استفاده <span class="emoji">🛠️</span></h2>
+        <div class="card">
+            <h3>اتصالات سخت‌افزاری</h3>
+            <ol>
+                <li><strong>سنسورها</strong>: سنسورهای MAX30105، BME280 و MQ135 را به ESP32 متصل کنید.</li>
+                <li><strong>نوار LED</strong>: نوار LED را به پین GPIO تعیین شده متصل کنید.</li>
+            </ol>
+
+            <h3>پیکربندی نرم‌افزار</h3>
+            <ol>
+                <li><strong>اعتبارنامه‌های Wi-Fi</strong>: اعتبارنامه‌های Wi-Fi و جزئیات سرور را در کد آردوینو به‌روزرسانی کنید.</li>
+                <li><strong>آپلود کد</strong>: از IDE آردوینو برای آپلود کد به برد ESP32 خود استفاده کنید.</li>
+                <li><strong>نظارت</strong>: Serial Monitor را باز کنید تا داده‌های زمان واقعی و اطلاعات اشکال‌زدایی را مشاهده کنید.</li>
+            </ol>
+
+            <h3>راه‌اندازی سمت سرور</h3>
+            <ol>
+                <li><strong>اسکریپت PHP</strong>: اسکریپت PHP ارائه شده را روی سرور خود مستقر کنید تا داده‌های ورودی را مدیریت کند. این اسکریپت داده‌های ورودی را رمزگشایی می‌کند، آن را تجزیه می‌کند، در یک فایل متنی و یک فایل CSV ذخیره می‌کند و پاسخی را به ESP32 برمی‌گرداند.</li>
+                <li><strong>رابط HTML</strong>: از فایل HTML ارائه شده برای نمایش داده‌ها در قالبی کاربرپسند استفاده کنید. فایل HTML از JavaScript برای دریافت آخرین داده‌ها از سرور و به‌روزرسانی صفحه وب در زمان واقعی استفاده می‌کند.</li>
+            </ol>
+        </div>
+        
+        <h2>کد آردوینو <span class="emoji">💻</span></h2>
+        <div class="card">
+            <p>کد آردوینو داده‌ها را از سنسورها جمع‌آوری می‌کند، آن‌ها را پردازش می‌کند و به سرور ارسال می‌کند. همچنین نشانگرهای LED را بر اساس خوانش‌ها مدیریت می‌کند.</p>
+
+            <h3>بخش‌های کلیدی کد آردوینو:</h3>
+            <ul>
+                <li><strong>راه‌اندازی Wi-Fi</strong>: به شبکه Wi-Fi مشخص شده متصل می‌شود.</li>
+                <li><strong>مقداردهی اولیه سنسور</strong>: سنسورهای MAX30105، BME280 و MQ135 را مقداردهی اولیه می‌کند.</li>
+                <li><strong>جمع‌آوری و رمزگذاری داده‌ها</strong>: داده‌ها را از سنسورها جمع‌آوری می‌کند، با استفاده از رمز سزار آن‌ها را رمزگذاری می‌کند و برای انتقال آماده می‌کند.</li>
+                <li><strong>درخواست HTTP POST</strong>: داده‌های رمزگذاری شده را از طریق یک درخواست HTTP POST به سرور ارسال می‌کند.</li>
+            </ul>
+        </div>
+        
+        <h2>وابستگی‌ها <span class="emoji">📚</span></h2>
+        <div class="card">
+            <ul>
+                <li>Arduino IDE</li>
+                <li><code>Wire.h</code></li>
+                <li><code>MAX30105.h</code></li>
+                <li><code>spo2_algorithm.h</code></li>
+                <li><code>Adafruit_NeoPixel.h</code></li>
+                <li><code>Adafruit_BME280.h</code></li>
+                <li><code>WiFi.h</code></li>
+                <li><code>HTTPClient.h</code></li>
+            </ul>
+        </div>
+        
+        <h2>پروفایل <span class="emoji">👤</span></h2>
+        <div class="card">
+            <p>پروفایل گیت‌هاب من را ببینید: <a href="https://github.com/Esmail-sarhadi" target="_blank" class="btn">اسماعیل سرحدی</a></p>
+        </div>
+        
+        <h2>لینک پروژه <span class="emoji">🔗</span></h2>
+        <div class="card">
+            <p>این پروژه را در گیت‌هاب مشاهده کنید: <a href="https://github.com/Esmail-sarhadi/heathguard" target="_blank" class="btn">هلث‌گارد</a></p>
+        </div>
+        
+        <h2>حمایت مالی <span class="emoji">💖</span></h2>
+        <div class="card">
+            <p>اگر این پروژه برای شما مفید بوده است، لطفاً حمایت مالی خود را در نظر بگیرید:</p>
+            <a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank" class="btn">
+                اکنون حمایت کنید <span class="emoji">🙏</span>
+            </a>
+        </div>
+        
+        <h2>مجوز <span class="emoji">📄</span></h2>
+        <div class="card">
+            <p>این پروژه تحت مجوز MIT منتشر شده است - برای جزئیات بیشتر فایل <a href="/heathguard/LICENSE" class="btn">LICENSE</a> را مشاهده کنید.</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
