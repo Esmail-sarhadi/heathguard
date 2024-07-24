@@ -1,220 +1,280 @@
-
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="vqq11CWNVkLVnZvjCeZReKc8-FRmgxek2SOWjr35CbY" />
     <link rel="shortcut icon" type="image/png" href="android-chrome-512x512.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heathguard | Advanced Environmental and Health Monitoring System with ESP32</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+         
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #f3f3f3;
+            --card-background: white;
+            --text-color: #333;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(45deg, var(--background-color), #e6e6e6);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            perspective: 1000px;
+        }
+        
+        h1, h2 {
+            color: var(--secondary-color);
+            text-align: center;
+            transform: translateZ(50px);
+            transition: transform 0.3s ease;
+        }
+        
+        h1:hover, h2:hover {
+            transform: translateZ(75px) scale(1.05);
+        }
+        
+        .card {
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 5px;
+            display: inline-block;
+            animation: bounce 0.6s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes rotate3D {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        
+        .rotate3D {
+            animation: rotate3D 10s linear infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #3498db;
+                --secondary-color: #ecf0f1;
+                --background-color: #2c3e50;
+                --card-background: #34495e;
+                --text-color: #ecf0f1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="rotate3D">Heathguard <span class="emoji">🌡️</span><span class="emoji">💓</span><span class="emoji">🔬</span></h1>
+        
+        <div class="card">
+            <h2>Advanced Environmental and Health Monitoring System with ESP32</h2>
+            <p>This project is an advanced environmental and health monitoring system built with an ESP32 microcontroller. It measures various environmental parameters and human health indicators in real-time, transmitting encrypted data to a remote server via Wi-Fi. <span class="emoji">🚀</span></p>
+        </div>
+        
+        <img src="/heathguard/images/dashboard.png" alt="ESP32 Monitoring System" />
+        
+        <h2>Features <span class="emoji">✨</span></h2>
+        <div class="card">
+            <h3>Health Monitoring <span class="emoji">💓</span></h3>
+            <ul>
+                <li><strong>Heart Rate and SpO2 Measurement</strong>: Uses the MAX30105 sensor for accurate heart rate and blood oxygen saturation (SpO2) readings.</li>
+                <li><strong>Finger Detection</strong>: Automatically detects a finger on the sensor to start measurements.</li>
+            </ul>
 
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>heathguard | Advanced Environmental and Health Monitoring System with ESP32</title>
-<meta name="generator" content="Jekyll v3.9.5" />
-<meta property="og:title" content="heathguard" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Advanced Environmental and Health Monitoring System with ESP32" />
-<meta property="og:description" content="Advanced Environmental and Health Monitoring System with ESP32" />
-<link rel="canonical" href="https://esmail-sarhadi.github.io/heathguard/" />
-<meta property="og:url" content="https://esmail-sarhadi.github.io/heathguard/" />
-<meta property="og:site_name" content="heathguard" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="heathguard" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Advanced Environmental and Health Monitoring System with ESP32","headline":"heathguard","name":"heathguard","url":"https://esmail-sarhadi.github.io/heathguard/"}</script>
-<!-- End Jekyll SEO tag -->
+            <h3>Environmental Monitoring <span class="emoji">🌡️</span></h3>
+            <ul>
+                <li><strong>Temperature, Humidity, and Pressure</strong>: Uses the BME280 sensor for environmental readings.</li>
+                <li><strong>Air Quality</strong>: Monitors CO2 levels with the MQ135 sensor and classifies air quality as "Good", "Fair", "Poor", or "Very Poor".</li>
+            </ul>
 
-    <link rel="stylesheet" href="/heathguard/assets/css/style.css?v=8220bc6fd170c227c5dd276087dbd3b764f3a72d">
-    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+            <h3>LED Indicators <span class="emoji">💡</span></h3>
+            <ul>
+                <li><strong>Pulse Display</strong>: Heart rate is visually indicated with green LED pulses.</li>
+                <li><strong>Alert System</strong>: Red LEDs blink to indicate when environmental thresholds are exceeded.</li>
+            </ul>
 
-<!-- Setup Google Analytics -->
+            <h3>Data Security <span class="emoji">🔒</span></h3>
+            <ul>
+                <li><strong>Data Encryption</strong>: Uses a Caesar cipher for encrypting data before transmission to ensure secure communication.</li>
+                <li><strong>Wi-Fi Connectivity</strong>: Connects to Wi-Fi to send encrypted data to a specified server for remote monitoring.</li>
+            </ul>
 
+            <h3>Server Communication <span class="emoji">🌐</span></h3>
+            <ul>
+                <li><strong>HTTP POST Requests</strong>: Sends encrypted sensor data to a server for real-time monitoring.</li>
+                <li><strong>Response Handling</strong>: Receives and decrypts responses from the server to ensure data integrity and proper communication.</li>
+            </ul>
+        </div>
+        
+        <h2>Setup and Usage <span class="emoji">🛠️</span></h2>
+        <div class="card">
+            <h3>Hardware Connections</h3>
+            <ol>
+                <li><strong>Sensors</strong>: Connect the MAX30105, BME280, and MQ135 sensors to the ESP32.</li>
+                <li><strong>LED Strip</strong>: Connect the LED strip to the designated GPIO pin.</li>
+            </ol>
 
+            <h3>Software Configuration</h3>
+            <ol>
+                <li><strong>Wi-Fi Credentials</strong>: Update the Wi-Fi credentials and server details in the Arduino code.</li>
+                <li><strong>Upload Code</strong>: Use the Arduino IDE to upload the code to your ESP32 board.</li>
+                <li><strong>Monitor</strong>: Open the Serial Monitor to view real-time data and debug information.</li>
+            </ol>
 
-<!-- You can set your favicon here -->
-<!-- link rel="shortcut icon" type="image/x-icon" href="/heathguard/favicon.ico" -->
+            <h3>Server-Side Setup</h3>
+            <ol>
+                <li><strong>PHP Script</strong>: Deploy the provided PHP script on your server to handle incoming data. This script decrypts the incoming data, parses it, saves it to a text file and a CSV file, and returns a response to the ESP32.</li>
+                <li><strong>HTML Interface</strong>: Use the included HTML file to display the data in a user-friendly format. The HTML file uses JavaScript to fetch the latest data from the server and update the webpage in real-time.</li>
+            </ol>
+        </div>
+        
+        <h2>Arduino Code <span class="emoji">💻</span></h2>
+        <div class="card">
+            <p>The Arduino code collects data from the sensors, processes it, and sends it to the server. It also handles LED indications based on the readings.</p>
 
-<!-- end custom head snippets -->
-
-  </head>
-  <body>
-    <div class="container-lg px-3 my-5 markdown-body">
-      
-      <h1><a href="https://esmail-sarhadi.github.io/heathguard/">heathguard</a></h1>
-      
-
-      
-<hr />
-
-<h1 id="advanced-environmental-and-health-monitoring-system-with-esp32">Advanced Environmental and Health Monitoring System with ESP32</h1>
-
-<p>This project is an advanced environmental and health monitoring system built with an ESP32 microcontroller. It measures various environmental parameters and human health indicators in real-time, transmitting encrypted data to a remote server via Wi-Fi.
-<img src="/heathguard/images/dashboard.png" alt="ESP32 Monitoring System" /></p>
-<h2 id="features">Features</h2>
-
-<h3 id="health-monitoring">Health Monitoring</h3>
-<ul>
-  <li><strong>Heart Rate and SpO2 Measurement</strong>: Uses the MAX30105 sensor for accurate heart rate and blood oxygen saturation (SpO2) readings.</li>
-  <li><strong>Finger Detection</strong>: Automatically detects a finger on the sensor to start measurements.</li>
-</ul>
-
-<h3 id="environmental-monitoring">Environmental Monitoring</h3>
-<ul>
-  <li><strong>Temperature, Humidity, and Pressure</strong>: Uses the BME280 sensor for environmental readings.</li>
-  <li><strong>Air Quality</strong>: Monitors CO2 levels with the MQ135 sensor and classifies air quality as “Good”, “Fair”, “Poor”, or “Very Poor”.</li>
-</ul>
-
-<h3 id="led-indicators">LED Indicators</h3>
-<ul>
-  <li><strong>Pulse Display</strong>: Heart rate is visually indicated with green LED pulses.</li>
-  <li><strong>Alert System</strong>: Red LEDs blink to indicate when environmental thresholds are exceeded.</li>
-</ul>
-
-<h3 id="data-security">Data Security</h3>
-<ul>
-  <li><strong>Data Encryption</strong>: Uses a Caesar cipher for encrypting data before transmission to ensure secure communication.</li>
-  <li><strong>Wi-Fi Connectivity</strong>: Connects to Wi-Fi to send encrypted data to a specified server for remote monitoring.</li>
-</ul>
-
-<h3 id="server-communication">Server Communication</h3>
-<ul>
-  <li><strong>HTTP POST Requests</strong>: Sends encrypted sensor data to a server for real-time monitoring.</li>
-  <li><strong>Response Handling</strong>: Receives and decrypts responses from the server to ensure data integrity and proper communication.</li>
-</ul>ESP32-WiFi-TempSensor-Network
-
-<h2 id="setup-and-usage">Setup and Usage</h2>
-
-<h3 id="hardware-connections">Hardware Connections</h3>
-<ol>
-  <li><strong>Sensors</strong>: Connect the MAX30105, BME280, and MQ135 sensors to the ESP32.</li>
-  <li><strong>LED Strip</strong>: Connect the LED strip to the designated GPIO pin.</li>
-</ol>
-
-<h3 id="software-configuration">Software Configuration</h3>
-<ol>
-  <li><strong>Wi-Fi Credentials</strong>: Update the Wi-Fi credentials and server details in the Arduino code.</li>
-  <li><strong>Upload Code</strong>: Use the Arduino IDE to upload the code to your ESP32 board.</li>
-  <li><strong>Monitor</strong>: Open the Serial Monitor to view real-time data and debug information.</li>
-</ol>
-
-<h3 id="server-side-setup">Server-Side Setup</h3>
-<ol>
-  <li><strong>PHP Script</strong>: Deploy the provided PHP script on your server to handle incoming data. This script decrypts the incoming data, parses it, saves it to a text file and a CSV file, and returns a response to the ESP32.
-    <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">decrypt</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$shift</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> 
-    <span class="nv">$decrypted</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$decrypted</span> <span class="mf">.</span><span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="nv">$i</span><span class="p">])</span> <span class="o">-</span> <span class="nv">$shift</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nv">$decrypted</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">"REQUEST_METHOD"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"POST"</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$encryptedData</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
-    <span class="nv">$data</span> <span class="o">=</span> <span class="nf">decrypt</span><span class="p">(</span><span class="nv">$encryptedData</span><span class="p">);</span>
-    <span class="mf">...</span>
-<span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>HTML Interface</strong>: Use the included HTML file to display the data in a user-friendly format. The HTML file uses JavaScript to fetch the latest data from the server and update the webpage in real-time.
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
-    <span class="kd">function</span> <span class="nx">fetchData</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">data.txt</span><span class="dl">'</span><span class="p">)</span>
-            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
-            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                <span class="kd">const</span> <span class="nx">lines</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">);</span>
-                <span class="kd">const</span> <span class="nx">lastLine</span> <span class="o">=</span> <span class="nx">lines</span><span class="p">[</span><span class="nx">lines</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-                <span class="kd">const</span> <span class="nx">dataArray</span> <span class="o">=</span> <span class="nx">lastLine</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">);</span>
-                <span class="p">...</span>
-            <span class="p">});</span>
-    <span class="p">}</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div>    </div>
-    <p><img src="/heathguard/images/encrypt-data.png" alt="ESP32 Monitoring System" /></p>
-    <h3 id="arduino-code">Arduino Code</h3>
-  </li>
-</ol>
-
-<p>The Arduino code collects data from the sensors, processes it, and sends it to the server. It also handles LED indications based on the readings.</p>
-
-<h4 id="key-sections-of-the-arduino-code">Key Sections of the Arduino Code:</h4>
-<ul>
-  <li><strong>Wi-Fi Setup</strong>: Connects to the specified Wi-Fi network.</li>
-  <li><strong>Sensor Initialization</strong>: Initializes the MAX30105, BME280, and MQ135 sensors.</li>
-  <li><strong>Data Collection and Encryption</strong>: Collects data from the sensors, encrypts it using a Caesar cipher, and prepares it for transmission.</li>
-  <li><strong>HTTP POST Request</strong>: Sends the encrypted data to the server via an HTTP POST request.</li>
-</ul>
-
-<h3 id="running-the-project">Running the Project</h3>
-
-<ol>
-  <li><strong>Prepare the Hardware</strong>: Connect the sensors and LEDs to the ESP32 according to the wiring diagram.</li>
-  <li><strong>Configure and Upload Arduino Code</strong>:
-    <ul>
-      <li>Open the Arduino IDE.</li>
-      <li>Install necessary libraries (<code class="language-plaintext highlighter-rouge">Wire.h</code>, <code class="language-plaintext highlighter-rouge">MAX30105.h</code>, <code class="language-plaintext highlighter-rouge">Adafruit_NeoPixel.h</code>, <code class="language-plaintext highlighter-rouge">Adafruit_BME280.h</code>, <code class="language-plaintext highlighter-rouge">WiFi.h</code>, <code class="language-plaintext highlighter-rouge">HTTPClient.h</code>).</li>
-      <li>Update Wi-Fi credentials and server details in the code.</li>
-      <li>Upload the code to the ESP32.</li>
-    </ul>
-  </li>
-  <li><strong>Setup the Server</strong>:
-    <ul>
-      <li>Place the PHP script on your web server.</li>
-      <li>Ensure the server can handle incoming POST requests and has write permissions for the <code class="language-plaintext highlighter-rouge">data.txt</code> and <code class="language-plaintext highlighter-rouge">data.csv</code> files.</li>
-    </ul>
-  </li>
-  <li><strong>Run the HTML Interface</strong>:
-    <ul>
-      <li>Place the HTML file on your web server.</li>
-      <li>Open the HTML file in a web browser to view real-time data.</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="dependencies">Dependencies</h2>
-
-<ul>
-  <li>Arduino IDE</li>
-  <li><code class="language-plaintext highlighter-rouge">Wire.h</code></li>
-  <li><code class="language-plaintext highlighter-rouge">MAX30105.h</code></li>
-  <li><code class="language-plaintext highlighter-rouge">spo2_algorithm.h</code></li>
-  <li><code class="language-plaintext highlighter-rouge">Adafruit_NeoPixel.h</code></li>
-  <li><code class="language-plaintext highlighter-rouge">Adafruit_BME280.h</code></li>
-  <li><code class="language-plaintext highlighter-rouge">WiFi.h</code></li>
-  <li><code class="language-plaintext highlighter-rouge">HTTPClient.h</code></li>
-</ul>
-
-<h2 id="profile">Profile</h2>
-
-<p>Check out my GitHub profile: <a href="https://github.com/Esmail-sarhadi" target="_blank">Esmail Sarhadi</a></p>
-
-<h2 id="project-link">Project Link</h2>
-
-<p>View this project on GitHub: <a href="https://github.com/Esmail-sarhadi/heathguard" target="_blank">Heathguard</a></p>
-
-<h2 id="donation">Donation</h2>
-
-<p>If you find this project helpful, consider making a donation:</p>
-<p><a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank">
-     <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
-</a></p>
-      
-<h2 id="license">License</h2>
-
-<p>This project is licensed under the MIT License - see the <a href="/heathguard/LICENSE">LICENSE</a> file for details.</p>
-
-<hr />
-
-
-
-      
-      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
-        This site is open source. <a href="https://github.com/Esmail-sarhadi/heathguard/edit/main/README.md">Improve this page</a>.
-      </div>
-      
+            <h3>Key Sections of the Arduino Code:</h3>
+            <ul>
+                <li><strong>Wi-Fi Setup</strong>: Connects to the specified Wi-Fi network.</li>
+                <li><strong>Sensor Initialization</strong>: Initializes the MAX30105, BME280, and MQ135 sensors.</li>
+                <li><strong>Data Collection and Encryption</strong>: Collects data from the sensors, encrypts it using a Caesar cipher, and prepares it for transmission.</li>
+                <li><strong>HTTP POST Request</strong>: Sends the encrypted data to the server via an HTTP POST request.</li>
+            </ul>
+        </div>
+        
+        <h2>Dependencies <span class="emoji">📚</span></h2>
+        <div class="card">
+            <ul>
+                <li>Arduino IDE</li>
+                <li><code>Wire.h</code></li>
+                <li><code>MAX30105.h</code></li>
+                <li><code>spo2_algorithm.h</code></li>
+                <li><code>Adafruit_NeoPixel.h</code></li>
+                <li><code>Adafruit_BME280.h</code></li>
+                <li><code>WiFi.h</code></li>
+                <li><code>HTTPClient.h</code></li>
+            </ul>
+        </div>
+        
+        <h2>Profile <span class="emoji">👤</span></h2>
+        <div class="card">
+            <p>Check out my GitHub profile: <a href="https://github.com/Esmail-sarhadi" target="_blank" class="btn">Esmail Sarhadi</a></p>
+        </div>
+        
+        <h2>Project Link <span class="emoji">🔗</span></h2>
+        <div class="card">
+            <p>View this project on GitHub: <a href="https://github.com/Esmail-sarhadi/heathguard" target="_blank" class="btn">Heathguard</a></p>
+        </div>
+        
+        <h2>Donation <span class="emoji">💖</span></h2>
+        <div class="card">
+            <p>If you find this project helpful, consider making a donation:</p>
+            <a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank" class="btn">
+                Donate Now <span class="emoji">🙏</span>
+            </a>
+        </div>
+        
+        <h2>License <span class="emoji">📄</span></h2>
+        <div class="card">
+            <p>This project is licensed under the MIT License - see the <a href="/heathguard/LICENSE" class="btn">LICENSE</a> file for details.</p>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-    <script>anchors.add();</script>
-  </body>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
 </html>
